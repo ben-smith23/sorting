@@ -1,6 +1,6 @@
 # Sorting
-[![](https://github.com/mikeizbicki/sorting/workflows/tests/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests)
-[![](https://github.com/mikeizbicki/sorting/workflows/extra_credit/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests)
+[![](https://github.com/ben-smith23/sorting/workflows/tests/badge.svg)](https://github.com/ben-smith23/sorting/actions?query=workflow%3Atests)
+[![](https://github.com/ben-smith23/sorting/workflows/extra_credit/badge.svg)](https://github.com/ben-smith23/sorting/actions?query=workflow%3Atests)
 
 You will implement the merge and quick sort algorithms.
 
@@ -46,7 +46,7 @@ and the fastest versions of these algorithms are implemented via divide and conq
 
 Complete the following tasks:
 
-1. Fork the [sorting repo](https://github.com/mikeizbicki/sorting) and enable github actions
+1. Fork the [sorting repo](https://github.com/ben-smith23/sorting) and enable github actions
 1. Update the `README.md` file so that the test case badges point to your repo.
 1. Implement the `_merged`, `merge_sorted`, and `quick_sorted` functions so that all test cases in `tests/test_main.py` pass.
    You must implement `merge_sorted` and `quick_sorted` recursively.
