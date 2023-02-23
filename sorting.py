@@ -11,7 +11,7 @@ if cmp(a, b) returns  1, then a > b;
 if cmp(a, b) returns  0, then a == b.
 '''
 
-import random
+# import random
 
 
 def cmp_standard(a, b):
@@ -87,7 +87,11 @@ def _merged(xs, ys, cmp=cmp_standard):
     '''
     ns = []
     while len(xs) + len(ys) > 1:
-        if cmp(xs[0], ys[0]) == -1:
+        if xs[0] > xs[1]:
+            t = 1
+        else:
+            t = -1
+        if cmp(xs[0], ys[0]) == t:
             ns.append(xs[0])
             xs.remove(xs[0])
         else:
@@ -98,7 +102,7 @@ def _merged(xs, ys, cmp=cmp_standard):
     else:
         ns.append(xs[0])
     return ns
-    
+    #NEWFUNCTION
     xs = xs + ys
     xs = sorted(xs)
     return xs
@@ -142,13 +146,10 @@ def merge_sorted(xs, cmp=cmp_standard):
         return xs
     else:
         mid = len(xs) // 2
-        if cmp == cmp_standard:
-            left = xs[:mid]
-            right = xs[mid:]
-        else:
-            left = xs[mid:]
-            right = xs[:mid]
-        return _merged(merge_sorted(left), merge_sorted(right))
+        left = xs[:mid]
+        right = xs[mid:]
+        return _merged(merge_sorted(left, cmp=cmp),
+                       merge_sorted(right, cmp=cmp), cmp=cmp)
 
 
 def quick_sorted(xs, cmp=cmp_standard):
@@ -177,12 +178,15 @@ def quick_sorted(xs, cmp=cmp_standard):
     '''
     if len(xs) <= 1:
         return xs
-    piv = random.randint(0, len(xs) - 1)
-    pivot = xs[piv]
-    xs_smaller = [x for x in xs if x < pivot]
-    xs_bigger = [x for x in xs if x > pivot]
-    xs_equal = [x for x in xs if x == pivot]
-    return quick_sorted(xs_smaller) + xs_equal + quick_sorted(xs_bigger)
+    else:
+        mid = len(xs) // 2
+        pivot = xs[mid]
+        xs_lt = [x for x in xs if cmp(x, pivot) == -1]
+        xs_gt = [x for x in xs if cmp(x, pivot) == 1]
+        xs_eq = [x for x in xs if cmp(x, pivot) == 0]
+        xs_lt = quick_sorted(xs_lt, cmp=cmp)
+        xs_gt = quick_sorted(xs_gt, cmp=cmp)
+        return xs_lt + xs_eq + xs_gt
 
 
 def quick_sort(xs, cmp=cmp_standard):
@@ -209,4 +213,4 @@ def quick_sort(xs, cmp=cmp_standard):
     to implement quick_sort as an in-place algorithm.
     You should directly modify the input xs variable instead of returning
     a copy of the list.
-    '''    
+    '''
