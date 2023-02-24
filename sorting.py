@@ -224,10 +224,10 @@ def quick_sort(xs, cmp=cmp_standard):
         i = i + 1
         xs[i], xs[hi] = xs[hi], xs[i]
         return i
-    
+
     def _quicksort(lo, hi, cmp):
         if lo >= hi or lo < 0:
-            return xs  
+            return xs
         else:
             p = _partition(lo, hi, cmp)
             _quicksort(lo, p - 1, cmp)
